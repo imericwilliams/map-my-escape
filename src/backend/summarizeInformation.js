@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-const cohereApiKey = 'your_cohere_api_key';
-const alerts = ['some alert data']; // example alerts data
+const cohereApiKey =  process.env.COHERE_API_KEY;
+const alerts = ['⚠️ Natural Hazard Alert! ⚠️']; 
 
 axios.post('https://api.cohere.ai/baseline-summaries/generate', {
     input: alerts.join('\n'),

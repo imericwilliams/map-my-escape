@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-const cohereApiKey = 'your_cohere_api_key';
-const location = 'New York'; // example location
+const cohereApiKey = process.env.COHERE_API_KEY;
+const location = 'New York'; // the location will come via an HTTP Request by the Twilio WhatsApp API
 
 axios.post('https://api.cohere.ai/baseline-summaries/generate', {
     input: `natural hazards in ${location}`,
