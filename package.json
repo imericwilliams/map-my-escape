@@ -1,0 +1,23 @@
+{
+  "name": "map-my-escape",
+  "version": "1.0.0",
+  "description": "Users can sign up for an emergency text line that will alert them if they are in an area of concern for disaster.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelDWilliams1/map-my-escape.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichaelDWilliams1/map-my-escape/issues"
+  },
+  "homepage": "https://github.com/MichaelDWilliams1/map-my-escape#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
