@@ -26,6 +26,23 @@ Copy the env example file and fill in the required fields
 
 ## Project Photos
 
+<p align='center'>WhatsApp</p>
+<p align="center">
+<img src="https://github.com/imericwilliams/map-my-escape/blob/main/docs/whatsapp1.png?raw=true" height="500px">
+<img src="https://github.com/imericwilliams/map-my-escape/blob/main/docs/whatsapp2.png?raw=true" height="500px">
+<img src="https://github.com/imericwilliams/map-my-escape/blob/main/docs/whatsapp-3.png?raw=true" height="500px">
+</p>
+
+---
+
+<p align='center'>Wix Desktop</p>
+<p align="center">
+<img src="https://github.com/imericwilliams/map-my-escape/blob/main/docs/wix-desk-1.png?raw=true" height="400px">
+<img src="https://github.com/imericwilliams/map-my-escape/blob/main/docs/wix-desk-2.png?raw=true" height="400px">
+<img src="https://github.com/imericwilliams/map-my-escape/blob/main/docs/wix1.png?raw=true" height="500px">
+<img src="https://github.com/imericwilliams/map-my-escape/blob/main/docs/wix3-register.png?raw=true" height="500px">
+</p>
+
 
 ## Challenges we ran into
 
