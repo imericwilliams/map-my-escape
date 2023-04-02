@@ -1,19 +1,34 @@
 const express = require("express");
 const cors = require("cors");
+const { MongoClient } = require("mongodb");
 const routes = require("./routes/messages.routes");
 const notifyAtInterval = require("./notifyAtInterval");
+const { getAllUsers } = require("./services/user.service");
 
 require("dotenv").config();
 
-const app = express({
-  origin: `http://localhost:${process.env.PORT}}`,
+const app = express();
+
+const client = new MongoClient(process.env.MONGODB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
-});
+client
+  .connect()
+  .then((db) => {
+    console.log("Connected to MongoDB");
+    app.locals.db = db;
+    app.listen(process.env.PORT, () => {
+      console.log(`Server running on port ${process.env.PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  // const users = await getAllUsers(req.app.locals.db);
   res.send("Hello World!");
 });
 
