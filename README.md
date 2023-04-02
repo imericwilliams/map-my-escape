@@ -24,6 +24,9 @@ You will also need:
 
 Copy the env example file and fill in the required fields
 
+## Project Photos
+
+
 ## Challenges we ran into
 
 One challenging problem we ran into was getting all three of the APIs to work together to make a functional web app. Another challenge was getting the Wix front end to connect the backend. 
