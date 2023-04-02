@@ -12,7 +12,7 @@ module.exports = (description) => {
       format: "bullets",
     })
     .then((response) => {
-      console.log(response.body);
+      // console.log(response.body);
       return response;
     })
     .catch((error) => {

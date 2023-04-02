@@ -13,6 +13,6 @@ module.exports = async function (msg, phone) {
       to: `${phone}`,
     })
     .catch((error) => console.error(error));
-  console.log(message.body);
+
   return message;
 };

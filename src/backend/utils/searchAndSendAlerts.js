@@ -3,7 +3,6 @@ const summarizeInformation = require("./summarizeInformation");
 const sendWhatsappMsg = require("./sendWhatsappMsg");
 
 module.exports = async ({ phone, Latitude, Longitude }) => {
-  console.log({ phone, Latitude, Longitude });
   const response = await predictApi({ Latitude, Longitude });
   const uniqueAlertDescriptions = response.results
     .map((result) => {
@@ -22,7 +21,7 @@ module.exports = async ({ phone, Latitude, Longitude }) => {
 
   return Promise.all(requests)
     .then((messages) => {
-      console.log(messages);
+      // console.log(messages);
     })
     .catch((err) => {
       console.log(err);
