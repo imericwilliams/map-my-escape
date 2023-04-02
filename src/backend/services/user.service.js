@@ -1,4 +1,5 @@
 const createUser = async (db, user) => {
+  console.log("Creating user in db");
   return db.collection("users").insertOne(user);
 };
 
@@ -7,10 +8,11 @@ const getAllUsers = async (db) => {
 };
 
 const getUserWithPhone = async (db, phone) => {
-  return db.collection("users").find({ phone }).toArray();
+  return db.collection("users").findOne({ phone });
 };
 
 const updateUserLocation = async ({ db, phone, locationLat, locationLong }) => {
+  console.log("Updating user location in db");
   return db
     .collection("users")
     .updateOne({ phone }, { $set: { locationLat, locationLong } });

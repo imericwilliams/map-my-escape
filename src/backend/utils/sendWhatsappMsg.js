@@ -6,6 +6,8 @@ const twilioPhone = process.env.TWILIO_PHONE_NUMBER;
 const client = require("twilio")(accountSid, authToken);
 
 module.exports = async function (msg, phone) {
+  console.log("-----Sending message to user------");
+  console.log(msg);
   const message = await client.messages
     .create({
       body: msg,

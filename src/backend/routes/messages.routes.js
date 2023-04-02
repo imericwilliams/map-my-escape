@@ -4,6 +4,7 @@ const express = require("express");
 const {
   getUserWithPhone,
   updateUserLocation,
+  createUser,
 } = require("../services/user.service");
 const sendWhatsappMsg = require("../utils/sendWhatsappMsg");
 const searchAndSendAlerts = require("../utils/searchAndSendAlerts");
@@ -23,11 +24,14 @@ router.route("/register").post(async (req, res) => {
 });
 
 router.route("/msg").post(async (req, res) => {
-  const { From: phone, Latitude, Longitude } = req.body;
+  const { From: phone, Latitude, Longitude, Body } = req.body;
+  console.log(
+    req.body.Body || `Latitude: ${Latitude}, Longitude: ${Longitude}`
+  );
   const user = await getUserWithPhone(req.app.locals.db, phone);
-
+  console.log({ user });
   const locationExistsInMessage = Latitude && Longitude;
-  const userHasLocation = user.locationLat && user.locationLong;
+  const userHasLocation = user && user.locationLat && user.locationLong;
 
   // if phone does not exist in db, send message welcoming and explaining function, ask user to send location
   if (!user && !locationExistsInMessage) {

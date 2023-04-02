@@ -3,18 +3,26 @@ const summarizeInformation = require("./summarizeInformation");
 const sendWhatsappMsg = require("./sendWhatsappMsg");
 
 module.exports = async ({ phone, Latitude, Longitude }) => {
-  const response = await predictApi({ Latitude, Longitude });
-  const uniqueAlertDescriptions = response.results
-    .map((result) => {
-      return result.description;
-    })
-    .reduce((acc, curr) => {
-      return acc.includes(curr) ? acc : [...acc, curr];
-    }, [])
-    .slice(0, 3);
+  let response;
+  try {
+    response = await predictApi({ Latitude, Longitude });
+  } catch (err) {
+    console.log(err);
+  }
+  const uniqueAlertDescriptions =
+    response?.results
+      .map((result) => {
+        return result.description;
+      })
+      .reduce((acc, curr) => {
+        return acc.includes(curr) ? acc : [...acc, curr];
+      }, [])
+      .slice(0, 3) || [];
 
   const requests = uniqueAlertDescriptions.map((description) => {
+    console.log("Summarizing description with CoHere");
     return summarizeInformation(description).then((res) => {
+      console.log("Sending summarized alert to user")
       return sendWhatsappMsg(res.body.summary, phone);
     });
   });
