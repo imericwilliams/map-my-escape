@@ -1,24 +1,24 @@
 const createUser = async (db, user) => {
-  return db("map-my-escape").collection("users").insertOne(user);
+  return db.collection("users").insertOne(user);
 };
 
 const getAllUsers = async (db) => {
-  return db("map-my-escape").collection("users").find().toArray();
+  return db.collection("users").find().toArray();
 };
 
 const getUserWithPhone = async (db, phone) => {
-  return db("map-my-escape").collection("users").find({ phone }).toArray();
+  return db.collection("users").find({ phone }).toArray();
 };
 
-const updateUserLocation = async (db, phone, location) => {
-  return db("map-my-escape")
+const updateUserLocation = async ({ db, phone, locationLat, locationLong }) => {
+  return db
     .collection("users")
-    .find({ phone })
-    .updateOne({ location }, { $set: user });
+    .updateOne({ phone }, { $set: { locationLat, locationLong } });
 };
 
 module.exports = {
   createUser,
   getAllUsers,
   getUserWithPhone,
+  updateUserLocation,
 };

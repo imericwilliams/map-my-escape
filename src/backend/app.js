@@ -2,8 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
 const routes = require("./routes/messages.routes");
-const notifyAtInterval = require("./notifyAtInterval");
-const { getAllUsers } = require("./services/user.service");
+const notifyAtInterval = require("./utils/notifyAtInterval");
 
 require("dotenv").config();
 
@@ -14,13 +13,16 @@ const client = new MongoClient(process.env.MONGODB_URL, {
   useUnifiedTopology: true,
 });
 
+let interval;
 client
   .connect()
-  .then((db) => {
+  .then((client) => {
     console.log("Connected to MongoDB");
+    const db = client.db("map-my-escape");
     app.locals.db = db;
     app.listen(process.env.PORT, () => {
       console.log(`Server running on port ${process.env.PORT}`);
+      interval = notifyAtInterval(db);
     });
   })
   .catch((err) => {
@@ -28,7 +30,6 @@ client
   });
 
 app.get("/", async (req, res) => {
-  // const users = await getAllUsers(req.app.locals.db);
   res.send("Hello World!");
 });
 
@@ -39,16 +40,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // enable cors
-// app.use(cors());
-// app.options('*', cors());
+app.use(cors());
+app.options('*', cors());
 
 // v1 api routes
 app.use(routes);
 
-const interval = notifyAtInterval();
-
 const shutdown = () => {
   clearInterval(interval);
+  client.close();
 };
 
 process.on("SIGTERM", shutdown);
