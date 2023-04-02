@@ -75,7 +75,7 @@ function sendInstructions(summary) {
 }
 
 client.messages.create({
-    body: instructions,
+    body: sendInstructions(summary),
     from: process.env.TWILIO_PHONE_NUMBER, // twilio phone number
     to: phoneNumber,
 })
